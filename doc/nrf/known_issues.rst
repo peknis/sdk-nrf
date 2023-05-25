@@ -2307,6 +2307,18 @@ DFU and FOTA
 
 The issues in this section are related to :ref:`Device Firmware Updates <app_bootloaders>`.
 
+
+.. rst-class:: v2-3-0 v2-4-0
+
+NCSDK-21379: Single slot network core updates on nRF5340 does not work properly.
+  Currently a bug in the MCUBoot code will cause network core updates to not be applied when using the nRF5340 in a single slot configuration.
+  
+  **Affected platforms:** nRF5340
+  **Workaround:** Use one of the following workarounds:
+
+  * Enable :kconfig:option:`CONFIG_BOOT_IMAGE_ACCESS_HOOKS` and copy the routine for updating the network core from `loader.c` in mcuboot or `nrf53_hooks.c`.
+  * Use the dual-slot configuration of MCUBoot.
+
 .. rst-class:: v2-2-0 v2-1-4 v2-1-3 v2-1-2 v2-1-1 v2-1-0
 
 CIA-738: FMFU does not use external flash partitions
@@ -2316,7 +2328,7 @@ CIA-738: FMFU does not use external flash partitions
   **Affected platforms:** nRF9160
 
 .. rst-class:: v2-1-4 v2-1-3 v2-1-2 v2-1-1 v2-1-0
-
+j
 NCSDK-18357: Serial recovery does not work on nRF5340 network core
   If a network core serial recovery is attempted using MCUboot serial recovery, the upload will complete, but the image will not be transferred to the network core and the upgrade will fail.
 
